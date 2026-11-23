@@ -1,1 +1,33 @@
-
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#be0c2a">
+  <title>آسيا فون</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;background:#f6f6f8;color:#22242a;font-family:Tahoma,Arial,sans-serif;line-height:1.8}
+    header{background:#be0c2a;color:#fff;padding:28px 18px;text-align:center}header h1{margin:0;font-size:28px}header p{margin:6px 0 0;color:#ffe8ed}
+    main{max-width:720px;margin:28px auto;padding:0 16px}.panel{background:#fff;border:1px solid #ececf0;border-radius:16px;padding:22px;box-shadow:0 8px 28px #1b1b1b0a}
+    h2{font-size:20px;margin:0 0 12px}p{margin:8px 0;color:#60636d}.flow{display:grid;gap:12px;margin-top:18px}.step{padding:14px;border-radius:12px;background:#faf0f2}.step b{color:#a30a27}
+    footer{text-align:center;color:#777;padding:28px 12px;font-size:13px}
+  </style>
+</head>
+<body>
+  <header><h1>آسيا فون</h1><p>خدمات آسياسيل</p></header>
+  <main>
+    <section class="panel">
+      <h2>آلية الربط</h2>
+      <p>تعمل وظيفة الموقع على استقبال نص رسالة الرصيد من التطبيق وإرجاع كود خدمة USSD مضبوط في إعدادات الخادم.</p>
+      <div class="flow">
+        <div class="step"><b>1.</b> التطبيق يرسل نص رسالة الرصيد إلى الخادم.</div>
+        <div class="step"><b>2.</b> الخادم يستقبل الرسالة دون إجراء حسابات عليها.</div>
+        <div class="step"><b>3.</b> الخادم يعيد كود الخدمة المحدد، مثل <bdi dir="ltr">*350#</bdi> عند ضبطه.</div>
+        <div class="step"><b>4.</b> التطبيق يستلم الكود وينفذه على شريحة آسياسيل في الخلفية.</div>
+      </div>
+      <p>الكود الفعلي يُحدَّد من إعداد <bdi dir="ltr">ASIA_PHONE_USSD_CODE</bdi> في إعدادات Netlify.</p>
+    </section>
+  </main>
+  <footer>آسيا فون · <a href="/privacy-policy.html">سياسة الخصوصية</a></footer>
+</body>
+</html>
