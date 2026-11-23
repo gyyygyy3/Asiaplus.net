@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -6,6 +5,7 @@ plugins {
 
 android {
     namespace = "com.asiaphone.app"
+    // Google Play requires new apps and updates to target Android 16 (API 36).
     compileSdk = 36
 
     defaultConfig {
