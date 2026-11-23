@@ -1,42 +1,61 @@
-
 name: Build Asia Phone AAB
 
 on:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
+    name: Build Android App Bundle
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Download project
       - name: Checkout
         uses: actions/checkout@v4
 
+      # 2. Install Java 17
       - name: Set up Java 17
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: temurin
           java-version: '17'
 
+      # 3. Set up Gradle
       - name: Set up Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
 
+      # 4. Set up Android SDK
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
 
-      - name: Install SDK 36
+      # 5. Install Android SDK 36
+      - name: Install Android SDK 36
         run: |
           sdkmanager "platforms;android-36" "build-tools;36.0.0"
           yes | sdkmanager --licenses
 
-      - name: Build AAB
-        run: gradle --no-daemon :app:bundleRelease
+      # 6. Build AAB
+      - name: Build Asia Phone AAB
+        run: |
+          if [ -f "./gradlew" ]; then
+            chmod +x ./gradlew
+            ./gradlew --no-daemon :app:bundleRelease
+          else
+            gradle --no-daemon :app:bundleRelease
+          fi
 
-      - name: Upload AAB
+      # 7. Upload AAB
+      - name: Upload Asia Phone AAB
         uses: actions/upload-artifact@v4
         with:
           name: AsiaPhone-AAB
           path: app/build/outputs/bundle/release/*.aab
           if-no-files-found: error
+          retention-days: 7
